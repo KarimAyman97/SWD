@@ -1,0 +1,105 @@
+<app-forms-layout (closeForm)="onCloseButtonClick()">
+  <label for="dataTextArea">Project Charter:</label>
+
+  <div class="d-flex justify-content-center mt-5">
+
+    <div>
+
+      <form [formGroup]="intiateForm" (ngSubmit)="onSubmit()">
+        <!-- project title -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Project Title</mat-label>
+            <input matInput formControlName="projectTitle">
+            <mat-error *ngIf="intiateForm.get('projectTitle')?.hasError('required') &&
+            (intiateForm.get('projectTitle')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- start date -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose a start Date</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="startDate"
+              [max]="intiateForm.get('finishDate')?.value">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error *ngIf="intiateForm.get('startDate')?.hasError('required') &&
+            (intiateForm.get('startDate')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- end date  -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Choose a finish Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="finishDate"
+              [min]="intiateForm.get('startDate')?.value">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="intiateForm.get('finishDate')?.hasError('required') &&
+            (intiateForm.get('finishDate')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Objectives -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Objectives</mat-label>
+            <input matInput formControlName="objectives">
+            <mat-error *ngIf="intiateForm.get('objectives')?.hasError('required') &&
+            (intiateForm.get('objectives')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- project Manager -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Project Manager</mat-label>
+            <input matInput formControlName="projectManager">
+            <mat-error *ngIf="intiateForm.get('projectManager')?.hasError('required') &&
+            (intiateForm.get('projectManager')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- budgetInformation -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Budget Information</mat-label>
+            <input matInput formControlName="budgetInformation">
+            <mat-error *ngIf="intiateForm.get('budgetInformation')?.hasError('required') &&
+            (intiateForm.get('budgetInformation')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- scopeStatement -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Scope Statement</mat-label>
+            <input matInput formControlName="scopeStatement">
+            <mat-error *ngIf="intiateForm.get('scopeStatement')?.hasError('required') &&
+            (intiateForm.get('scopeStatement')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-footer mt-2" *ngIf="!data">
+          <button type="submit">Submit</button>
+          <button type="button" class="btn reset-btn" (click)="onReset()">Reset</button>
+        </div>
+        <div class="form-footer mt-2" *ngIf="data">
+          <button type="submit">Edit</button>
+          <button type="button" class="btn reset-btn" (click)="removeData()">Remove</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-forms-layout>

@@ -1,0 +1,60 @@
+<app-forms-layout (closeForm)="onCloseButtonClick()">
+  <label for="dataTextArea">System Design Documents (SDD):</label>
+  <!-- Add File Group Button -->
+  <div class="form-group mt-3">
+    <p class="font-weight-bold">Insert Documents as Images (UML Diagrams , Database Design , User Interface Design )
+    </p>
+
+    <button type="button" class="btn btn-primary" (click)="addFileGroup()">Add New Documents</button>
+  </div>
+  <div class="d-flex justify-content-center mt-5">
+
+    <div>
+      <form [formGroup]="DesignForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="fileGroups">
+          <div *ngFor="let fileGroup of DesignForm.get('fileGroups')['controls']; let i = index"
+            class="form-group row mt-3">
+            <div class="border">
+              <!-- File Input -->
+              <div class="col-md-5 mt-2">
+                <label for="file{{ i }}">File:</label>
+                <input type="file" id="file{{ i }}" [formControl]="fileGroup.get('file')" />
+                <p class="error-text" *ngIf="fileGroup.get('file')?.hasError('required') &&
+              (fileGroup.get('file')?.touched)">
+                  This field is required
+                </p>
+              </div>
+
+              <!-- Name Input -->
+              <div class="col-md-5 mt-2">
+                <label for="name{{ i }}">Name:</label>
+                <input type="text" id="name{{ i }}" [formControl]="fileGroup.get('name')" />
+                <p class="error-text" *ngIf="fileGroup.get('name')?.hasError('required') &&
+              (fileGroup.get('name')?.touched)">
+                  This field is required
+                </p>
+              </div>
+
+              <!-- Remove Button -->
+              <div class="col-md-2 my-2">
+                <button type="button" class="btn btn-danger" (click)="removeFileGroup(i)">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Submit Button -->
+        <div class="form-group my-3" *ngIf="!data">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+        <div class="form-footer mt-2" *ngIf="data">
+          <button type="submit">Edit</button>
+          <button type="button" class="btn reset-btn" (click)="removeData()">Remove</button>
+        </div>
+      </form>
+
+
+    </div>
+  </div>
+</app-forms-layout>

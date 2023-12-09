@@ -1,0 +1,10 @@
+.card {
+  margin-bottom: 10px; /* Optional: Add some margin between cards */
+}
+
+/* Set an initial height for the sidebar */
+:host {
+  display: block;
+  height: 400px; /* Adjust this value as needed */
+  overflow-y: auto; /* Add vertical scrollbar if content exceeds the height */
+}

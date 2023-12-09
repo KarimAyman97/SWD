@@ -1,0 +1,38 @@
+<!-- my-form.component.html -->
+
+<div class="container-lg">
+  <div class="row">
+    <!-- First Column -->
+    <div class="col-md-5">
+      <div class="form-group">
+        <div class="d-flex justify-content-start my-1">
+          <button class="btn btn-primary" (click)="enableCreate()">Create</button>
+        </div>
+        <div class="border">
+          <app-sdlc-sidebar (itemClick)="onSidebarItemClick($event)"></app-sdlc-sidebar>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Column -->
+    <div class="col-md-7" *ngIf="createEnabled">
+      <div class="form-group my-2 row">
+        <label for="formDropdown">SDLC Phase:</label>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="selectedSDLCPhase"
+          (change)="onPhaseTypeChange($event)">
+          <option selected value="Project Initiation">Project Initiation Phase</option>
+          <option value="Requirements">Requirements Phase</option>
+          <option value="Design">Design Phase</option>
+        </select>
+      </div>
+      <div class="row mt-3">
+        <app-initiation-form (closeForm)="onCloseButtonClick()" *ngIf="selectedSDLCPhase ==='Project Initiation'"
+          [data]="initiateData"></app-initiation-form>
+        <app-requirement (closeForm)="onCloseButtonClick()" *ngIf="selectedSDLCPhase ==='Requirements'"
+          [data]="requirementData"></app-requirement>
+        <app-design (closeForm)="onCloseButtonClick()" *ngIf="selectedSDLCPhase ==='Design'"
+          [data]="designData"></app-design>
+      </div>
+    </div>
+  </div>
+</div>

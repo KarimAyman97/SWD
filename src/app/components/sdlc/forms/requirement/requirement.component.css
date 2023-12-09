@@ -1,0 +1,33 @@
+.label-text {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.requirements-text {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.error-text {
+  color: red;
+  margin-top: 4px;
+}
+.form-footer button {
+  margin-right: 10px; /* Add margin to separate the buttons */
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-footer button.reset-btn {
+  background-color: #dc3545; /* Danger red color */
+}
+
+.form-footer button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

@@ -1,0 +1,88 @@
+<app-forms-layout (closeForm)="onCloseButtonClick()">
+  <label for="dataTextArea">Software Requirements Specifications:</label>
+
+  <div class="d-flex justify-content-center mt-5">
+    <div>
+
+      <form [formGroup]="requirementForm" (ngSubmit)="onSubmit()">
+        <!-- Introduction -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Introduction</mat-label>
+            <input matInput formControlName="introduction">
+            <mat-error *ngIf="requirementForm.get('introduction')?.hasError('required') &&
+            (requirementForm.get('introduction')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Purpose of Software Being Developed -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Purpose of Software Being Developed</mat-label>
+            <input matInput formControlName="purpose">
+            <mat-error *ngIf="requirementForm.get('purpose')?.hasError('required') &&
+            (requirementForm.get('purpose')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Intended Audience -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Intended Audience</mat-label>
+            <input matInput formControlName="audience">
+            <mat-error *ngIf="requirementForm.get('audience')?.hasError('required') &&
+            (requirementForm.get('audience')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Overall Description -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <mat-label>Overall Description</mat-label>
+            <input matInput formControlName="description">
+            <mat-error *ngIf="requirementForm.get('description')?.hasError('required') &&
+            (requirementForm.get('description')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- System Features and Requirements -->
+        <div class="form-group row mt-1">
+          <mat-form-field appearance="outline">
+            <label class="label-text">System Features and Requirements:</label>
+            <p class="requirements-text">
+              1- Functional Requirements<br>
+              2- Non-Functional Requirements<br>
+              3- External Interface Requirements
+            </p>
+            <textarea matInput formControlName="requirements" rows="5"></textarea>
+            <mat-error *ngIf="requirementForm.get('requirements')?.hasError('required') &&
+            (requirementForm.get('requirements')?.touched)">
+              This field is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- Use Case File -->
+        <div class="form-group row mt-1">
+          <label>Use Case File</label>
+          <input type="file" formControlName="useCaseFile" (change)="showPreview($event)" />
+          <p class="error-text" *ngIf="requirementForm.get('useCaseFile')?.hasError('required') &&
+            (requirementForm.get('useCaseFile')?.touched)">
+            This field is required
+          </p>
+        </div>
+        <div class="form-footer mt-4" *ngIf="!data">
+          <button type="submit">Submit</button>
+          <button type="button" class="btn reset-btn" (click)="onReset()">Reset</button>
+        </div>
+        <div class="form-footer mt-2" *ngIf="data">
+          <button type="submit">Edit</button>
+          <button type="button" class="btn reset-btn" (click)="removeData()">Remove</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-forms-layout>
